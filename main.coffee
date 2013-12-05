@@ -8,6 +8,11 @@ currentTime = null
 
 initialSetup = ->
   currentTime = new Date()
+
+  if isChrome()
+    console.debug "in chrome"
+    incrementTime 3600
+
   updateTime currentTime
 
 incrementTime = (seconds) ->
@@ -23,6 +28,12 @@ showTime = ->
 setupClickEvent = ->
   $("a#add-minute").click ->
     incrementTime 60
+
+isChrome = ->
+  res = navigator.userAgent.toLowerCase().indexOf('chrome') 
+  console.debug navigator.userAgent.toLowerCase()
+  console.debug res
+  res > -1
 
 $(initialSetup)
 $(showTime)
